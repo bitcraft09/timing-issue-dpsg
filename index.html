@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parents Campaign - DPSG Timing Issue</title>
+
+<style>
+body{
+font-family:Arial, Helvetica, sans-serif;
+margin:0;
+background:#f4f6f8;
+color:#222;
+}
+
+header{
+background:linear-gradient(90deg,#b71c1c,#e53935);
+color:white;
+padding:40px 20px;
+text-align:center;
+}
+
+header h1{
+margin:0;
+font-size:32px;
+}
+
+header p{
+font-size:18px;
+margin-top:10px;
+}
+
+.banner{
+background:#fff3cd;
+color:#856404;
+padding:15px;
+text-align:center;
+font-weight:bold;
+border-bottom:1px solid #ffeeba;
+}
+
+.countdown{
+background:#111;
+color:#fff;
+text-align:center;
+padding:20px;
+font-size:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:22px;
+margin-bottom:20px;
+border-radius:12px;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+.card h2{
+color:#c62828;
+margin-top:0;
+}
+
+ul{
+line-height:1.8;
+}
+
+.button{
+display:inline-block;
+margin-top:10px;
+padding:12px 18px;
+background:#1976d2;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+
+.button.red{
+background:#d32f2f;
+}
+
+.button.green{
+background:#2e7d32;
+}
+
+.button.whatsapp{
+background:#25D366;
+}
+
+.actions{
+margin-top:10px;
+}
+
+footer{
+text-align:center;
+padding:25px;
+color:#777;
+}
+
+</style>
+
+<script>
+function startCountdown(){
+
+// Set campaign meeting date here
+var campaignDate = new Date("Apr 10, 2026 10:00:00").getTime();
+
+var timer = setInterval(function(){
+
+var now = new Date().getTime();
+
+var distance = campaignDate - now;
+
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+if(distance < 0){
+clearInterval(timer);
+document.getElementById("timer").innerHTML = "Campaign Active Now";
+}
+else{
+
+document.getElementById("timer").innerHTML = days + " Days " + hours + " Hours " + minutes + " Minutes";
+}
+
+},1000);
+}
+
+</script>
+
+</head>
+
+<body onload="startCountdown()">
+
+<header>
+<h1>Parents Campaign</h1>
+<p>Raise your voice for students' health and well-being</p>
+</header>
+
+<div class="banner">
+Concern: Increased School Timing at DPSG Meerut Road Ghaziabad
+</div>
+
+<div class="countdown">
+Next Parent Action Starts In: <span id="timer"></span>
+</div>
+
+<div class="container">
+
+<div class="card">
+<h2>Parents Action Checklist</h2>
+<p>Every parent can help. Complete these steps and share with others.</p>
+</div>
+
+<div class="card">
+<h2>1. Submit Official Complaints</h2>
+<p>Register complaints on government portals.</p>
+
+<div class="actions">
+<a class="button" target="_blank" href="https://ncpcr.gov.in/ebaalnidan/main/complaint">Complaint on NCPCR</a>
+</div>
+
+<div class="actions">
+<a class="button" target="_blank" href="https://jansunwai.up.nic.in/onlineComplaint">Complaint on Jansunwai</a>
+</div>
+
+</div>
+
+<div class="card">
+<h2>2. Support Social Media Campaign</h2>
+<p>Like, share and comment everywhere mentioning DPSG.</p>
+
+<ul>
+<li>Facebook: @DelhiPublicSchoolGzbMR</li>
+<li>Twitter/X: @DPSG_PRNCPLMR</li>
+</ul>
+
+<p>Parents already raising the issue:</p>
+
+<ul>
+<li><a target="_blank" href="https://www.facebook.com/tyagi.vivek1">Example Parent Profile</a></li>
+<li><a target="_blank" href="https://www.facebook.com/share/p/1KanC2Shme/">Example Campaign Post</a></li>
+</ul>
+
+</div>
+
+<div class="card">
+<h2>3. Write Facebook Reviews</h2>
+<p>Share your concern publicly in the reviews section.</p>
+
+<a class="button red" target="_blank" href="https://www.facebook.com/DelhiPublicSchoolGzbMR/reviews">Write Review</a>
+
+</div>
+
+<div class="card">
+<h2>4. Comment on Every Post</h2>
+<p>Visit the official Facebook page and comment on every post highlighting the timing issue.</p>
+</div>
+
+<div class="card">
+<h2>Spread the Campaign</h2>
+<p>Share this campaign page with other parents.</p>
+
+<a class="button whatsapp" target="_blank" href="https://wa.me/?text=Parents%20campaign%20against%20increased%20school%20timing.%20Join%20and%20take%20action.">Share on WhatsApp</a>
+
+</div>
+
+<div class="card">
+<h2>More Ideas?</h2>
+<p>If you have better strategies or campaign ideas, share them with other parents so everyone can act together.</p>
+</div>
+
+</div>
+
+<footer>
+Parents Community Initiative
+</footer>
+
+</body>
+</html>

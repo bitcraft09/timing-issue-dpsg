@@ -103,6 +103,65 @@ padding:25px;
 color:#777;
 }
 
+  
+.media-btn{
+padding:12px 20px;
+background:#e63946;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+.media-modal{
+display:none;
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+z-index:1000;
+}
+
+.media-modal-content{
+background:white;
+margin:5% auto;
+padding:20px;
+width:80%;
+max-width:900px;
+border-radius:8px;
+}
+
+.media-close{
+float:right;
+font-size:28px;
+cursor:pointer;
+}
+
+.social-links a{
+display:block;
+margin:8px 0;
+color:#0077cc;
+font-weight:bold;
+text-decoration:none;
+}
+
+.news-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+gap:15px;
+margin-top:15px;
+}
+
+.news-grid img{
+width:100%;
+border-radius:5px;
+cursor:pointer;
+}
+
+
 </style>
 
 <script>
@@ -131,6 +190,14 @@ document.getElementById("timer").innerHTML = days + " Days " + hours + " Hours "
 }
 
 },1000);
+}
+
+  function openMediaPopup(){
+document.getElementById("mediaPopup").style.display="block";
+}
+
+function closeMediaPopup(){
+document.getElementById("mediaPopup").style.display="none";
 }
 
 </script>
@@ -344,6 +411,10 @@ Share on Facebook
   </a>
     </div>
 
+<button onclick="openMediaPopup()" class="media-btn">
+📢 View Social Media & News Coverage
+</button>
+    
   </div>
 
 <div class="card">
@@ -352,6 +423,49 @@ Share on Facebook
 </div>
 
 </div>
+
+<div id="mediaPopup" class="media-modal">
+
+<div class="media-modal-content">
+
+<span class="media-close" onclick="closeMediaPopup()">×</span>
+
+<h2>Social Media & News Coverage</h2>
+
+<h3>Social Media Posts</h3>
+
+<div class="social-links">
+
+<a href="https://twitter.com/post1" target="_blank">Twitter Post</a>
+
+<a href="https://facebook.com/post2" target="_blank">Facebook Post</a>
+
+<a href="https://instagram.com/post3" target="_blank">Instagram Post</a>
+
+<a href="https://reddit.com/post4" target="_blank">Reddit Discussion</a>
+
+</div>
+
+<h3>Newspaper Coverage</h3>
+
+<div class="news-grid">
+
+<a href="https://newslink1.com" target="_blank">
+<img src="news1.jpg">
+</a>
+
+<a href="https://newslink2.com" target="_blank">
+<img src="news2.jpg">
+</a>
+
+<a href="https://newslink3.com" target="_blank">
+<img src="news3.jpg">
+</a>
+
+</div>
+
+</div>
+</div>  
 
 <footer>
 Parents Community Initiative

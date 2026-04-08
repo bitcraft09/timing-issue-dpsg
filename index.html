@@ -200,6 +200,102 @@ function closeMediaPopup(){
 document.getElementById("mediaPopup").style.display="none";
 }
 
+  (function () {
+
+  /* ── tone pool — rotates randomly so every click feels different ── */
+  const TONES = [
+    "a deeply concerned parent worried about child health and sleep loss due to increased DPSG school timings",
+    "an angry parent demanding accountability from DPSG Ghaziabad management for imposing longer hours without consent",
+    "a parent appealing to CBSE to investigate DPSG Ghaziabad for implementing timings that harm student health",
+    "a parent urging CM Yogi and UP Government to immediately intervene and roll back DPSG's timing decision",
+    "a parent addressing Ghaziabad DM demanding urgent action against DPSG school's harmful new timing policy",
+    "a heartbroken parent sharing how their child is exhausted, stressed, with no playtime or family time",
+    "a parent rallying all DPSG parents to unite and collectively demand rollback of increased school timings",
+    "a parent citing child development facts about how excessive school hours harm children's mental and physical health",
+    "a parent appealing to NCPCR to protect children's rights being violated by DPSG Ghaziabad's extended hours"
+  ];
+
+  const HASHTAGS = "#dpsgwakeup #DPSGhaziabad #SchoolTimings #ChildHealth #DPSG #ParentsUnite #CBSESchools #UPGovt";
+  const HANDLES  = "@cbseindia29 @myogiadityanath @dm_ghaziabad @DPSG_PRNCPLMR @om_pathak1 @ABPNews";
+
+  /* ── main function called on button click ── */
+  window.dpsgShareOnX = async function () {
+    const btn    = document.getElementById('dpsg-share-x-btn');
+    const preview= document.getElementById('dpsg-tweet-preview');
+    const status = document.getElementById('dpsg-status');
+
+    /* loading state */
+    const originalText   = btn.textContent;
+    btn.textContent      = 'Generating…';
+    btn.disabled         = true;
+    btn.style.background = '#aaa';
+    preview.style.display= 'none';
+    status.textContent   = '';
+
+    const tone = TONES[Math.floor(Math.random() * TONES.length)];
+    const seed = Math.floor(Math.random() * 999999);
+
+    const prompt = `You are helping Indian parents raise their voice on social media.
+
+The issue: Delhi Public School Ghaziabad (DPSG, Meerut Road) has recently INCREASED school timings. Parents are seriously concerned about the impact on children's health, sleep, family time, and wellbeing. They want school authorities, CBSE, UP government, and district officials to ROLL BACK this decision.
+
+Write ONE powerful tweet as: ${tone}.
+
+Rules:
+- Maximum 200 characters for the main message body
+- First person, as a concerned DPSG parent
+- Firm, emotional, compelling — never abusive
+- Mention DPSG Ghaziabad clearly
+- Demand rollback of the increased timings
+- Include some of these handles naturally: ${HANDLES}
+- Unique variation seed: ${seed}
+- Add a new line at the end with ONLY these hashtags: ${HASHTAGS}
+
+Output ONLY the tweet. No quotes. No explanation. No markdown.`;
+
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({
+          model     : 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          messages  : [{ role: 'user', content: prompt }]
+        })
+      });
+
+      const data  = await res.json();
+      const tweet = data.content?.[0]?.text?.trim();
+      if (!tweet) throw new Error('empty');
+
+      /* show preview */
+      preview.textContent   = tweet;
+      preview.style.display = 'block';
+      status.textContent    = '✓ Tweet generated! Opening X…';
+      status.style.color    = '#27ae60';
+
+      /* open X share window — same pattern as your original button */
+      const url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweet);
+      window.open(url, '_blank', 'width=600,height=420,noopener');
+
+    } catch (err) {
+      status.textContent = 'Could not generate tweet. Please try again.';
+      status.style.color = '#c0392b';
+      /* fallback — open X with your original static tweet */
+      window.open(
+        'https://twitter.com/intent/tweet?text=' +
+        encodeURIComponent('Raising serious concerns over excessive school timings at Delhi Public School Ghaziabad (Meerut Road) impacting students\' health. Immediate action needed! #dpsgwakeup #DPSGhaziabad @cbseindia29 @myogiadityanath @dm_ghaziabad'),
+        '_blank'
+      );
+    } finally {
+      btn.textContent      = originalText;
+      btn.disabled         = false;
+      btn.style.background = '#1DA1F2';
+    }
+  };
+
+})();
+  
 </script>
 
 </head>
@@ -379,6 +475,11 @@ Share on Facebook
 <p>Visit the official Facebook page of DPSG and comment on every single post highlighting the timing issue.</p>
   <a class="button" target="_blank" href="https://www.facebook.com/DelhiPublicSchoolGzbMR">DPSG Facebook Page</a>
 </div>
+
+  <button id="dpsg-share-x-btn" onclick="dpsgShareOnX()" 
+  style="display:inline-block; margin:5px; padding:10px 15px; background:#1DA1F2; color:white; border:none; border-radius:5px; font-size:14px; cursor:pointer;">
+  Share on X
+</button>
 
 <div class="card">
 <h2>Spread the Campaign</h2>

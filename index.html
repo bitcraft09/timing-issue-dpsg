@@ -200,7 +200,9 @@ function closeMediaPopup(){
 document.getElementById("mediaPopup").style.display="none";
 }
 
-  document.getElementById("multiTweet").onclick = function(){
+
+
+function postTweets(){
 
 const tweets = [
 
@@ -214,20 +216,23 @@ const tweets = [
 
 ];
 
-tweets.forEach((tweet, index)=>{
+tweets.forEach(function(tweet, index){
 
 setTimeout(function(){
 
-window.open(
-"https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweet),
-"_blank"
-);
+const url =
+"https://twitter.com/intent/tweet?text=" +
+encodeURIComponent(tweet);
 
-}, index*800);
+window.open(url,"_blank");
+
+}, index*1200);
 
 });
 
 }
+
+  
   
 </script>
 
@@ -393,10 +398,8 @@ Share on Facebook
 <li>Twitter/X: @DPSG_PRNCPLMR</li>
 </ul>
 
-  <a href="#" id="multiTweet"
-style="display:inline-block;padding:12px 20px;background:#000;color:white;text-decoration:none;border-radius:25px;font-weight:bold;">
-Tweet Support
-</a>
+  <button onclick="postTweets()">Tweet Support</button>
+
   
 </div>
 

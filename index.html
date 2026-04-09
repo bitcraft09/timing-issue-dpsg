@@ -199,6 +199,35 @@ document.getElementById("mediaPopup").style.display="block";
 function closeMediaPopup(){
 document.getElementById("mediaPopup").style.display="none";
 }
+
+  document.getElementById("multiTweet").onclick = function(){
+
+const tweets = [
+
+"Parents raise serious concerns over excessive school timings at Delhi Public School Ghaziabad (Meerut Road). Students' health must come first. #dpsgwakeup",
+
+"Students deserve healthy schedules. Long school hours at DPSG Meerut Road must be reviewed urgently. #dpsgwakeup @dm_ghaziabad",
+
+"Parents request authorities to review excessive school timings at DPSG Meerut Road impacting children's well-being. #dpsgwakeup @myogiadityanath",
+
+"Media attention needed on excessive school timings affecting students at DPSG Meerut Road. #dpsgwakeup @ABPNews"
+
+];
+
+tweets.forEach((tweet, index)=>{
+
+setTimeout(function(){
+
+window.open(
+"https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweet),
+"_blank"
+);
+
+}, index*800);
+
+});
+
+}
   
 </script>
 
@@ -364,10 +393,9 @@ Share on Facebook
 <li>Twitter/X: @DPSG_PRNCPLMR</li>
 </ul>
 
-  <a href="https://twitter.com/intent/tweet?text=Raising serious concerns over excessive school timings at Delhi Public School Ghaziabad (Meerut Road) impacting students' health and well-being. Immediate intervention needed. #dpsgwakeup #NCPCR_ @DPSG_PRNCPLMR @myogiadityanath @dm_ghaziabad @ABPNews @om_pathak1&url=https://yourwebsite.com/timing-issue"
-target="_blank"
-style="display:inline-flex;align-items:center;gap:8px;margin:5px;padding:12px 20px;background:#000;color:white;text-decoration:none;border-radius:30px;font-weight:600;">
-Share on X
+  <a href="#" id="multiTweet"
+style="display:inline-block;padding:12px 20px;background:#000;color:white;text-decoration:none;border-radius:25px;font-weight:bold;">
+Tweet Support
 </a>
   
 </div>

@@ -232,6 +232,12 @@ window.open(url,"_blank");
 
 }
 
+function trackClick(id) {
+  let count = localStorage.getItem(id) || 0;
+  count++;
+  localStorage.setItem(id, count);
+  document.getElementById("count-" + id).innerText = count;
+}
   
   
 </script>
@@ -276,19 +282,19 @@ Please submit complaints on the government portals listed below so that authorit
 <p>Register complaints on government portals.</p>
 
 <div class="actions">
-<a class="button" target="_blank" href="https://jansunwai.up.nic.in/onlineComplaint">Complaint on Jansunwai</a>
+<a class="button" target="_blank" onclick="trackClick('JS')" href="https://jansunwai.up.nic.in/onlineComplaint">Complaint on Jansunwai (<span id="count-JS">0</span>)</a>
 </div>
 
 <div class="actions">
-<a class="button" target="_blank" href="https://ncpcr.gov.in/ebaalnidan/main/complaint">Complaint on NCPCR</a>
+<a class="button" target="_blank" onclick="trackClick('NCPCR')" href="https://ncpcr.gov.in/ebaalnidan/main/complaint">Complaint on NCPCR (<span id="count-NCPCR">0</span>)</a>
 </div>
 
 <div class="actions">
-<a class="button" target="_blank" href="https://www.hrcnet.nic.in/HRCNet/public/webcomplaint.aspx">Complaint on Human Rights Protection</a>
+<a class="button" target="_blank" onclick="trackClick('HRC')" href="https://www.hrcnet.nic.in/HRCNet/public/webcomplaint.aspx">Complaint on Human Rights Protection (<span id="count-HRC">0</span>)</a>
 </div>
 
 <div class="actions">
-<a class="button" target="_blank" href="https://pgportal.gov.in/Registration">Complaint on Centralized Public Grievance Redress & Monitoring System</a>
+<a class="button" target="_blank" onclick="trackClick('CPG')" href="https://pgportal.gov.in/Registration">Complaint on Centralized Public Grievance Redress & Monitoring System (<span id="count-CPG">0</span>)</a>
 </div>
 
 <hr style="margin:25px 0;">

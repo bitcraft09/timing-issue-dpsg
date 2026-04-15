@@ -232,11 +232,11 @@ window.open(url,"_blank");
 
 }
 
-function trackClick(id) {
-  let count = localStorage.getItem(id) || 0;
-  count++;
-  localStorage.setItem(id, count);
-  document.getElementById("count-" + id).innerText = count;
+function trackEvent(eventName, label) {
+    gtag('event', eventName, {
+      event_category: 'engagement',
+      event_label: label
+    });
 }
   
   
@@ -288,22 +288,22 @@ Please submit complaints on the government portals listed below so that authorit
 <div class="card">
 <h2>1. Submit Official Complaints</h2>
 <p>Register complaints on government portals.</p>
-
+  
 <div class="actions">
-<a class="button" target="_blank" onclick="gtag('event', 'click', {event_category: 'Complaint Button',event_label: 'Jansunwai'})"  
+<a class="button" target="_blank" onclick="trackEvent('Jansunwai_click', 'Jansunwai_button')"  
   href="https://jansunwai.up.nic.in/onlineComplaint">Complaint on Jansunwai</a>
 </div>
 
 <div class="actions">
-<a class="button" target="_blank" onclick="gtag('event', 'click', {event_category: 'Complaint Button',event_label: 'NCPCR'})" href="https://ncpcr.gov.in/ebaalnidan/main/complaint">Complaint on NCPCR </a>
+<a class="button" target="_blank" onclick="trackEvent('ncpcr_click', 'ncpcr_button')" href="https://ncpcr.gov.in/ebaalnidan/main/complaint">Complaint on NCPCR </a>
 </div>
 
 <div class="actions">
-<a class="button" target="_blank" onclick="gtag('event', 'click', {event_category: 'Complaint Button',event_label: 'HRC'})" href="https://www.hrcnet.nic.in/HRCNet/public/webcomplaint.aspx">Complaint on Human Rights Protection </a>
+<a class="button" target="_blank" onclick="trackEvent('hrc_click', 'hrc_button')" href="https://www.hrcnet.nic.in/HRCNet/public/webcomplaint.aspx">Complaint on Human Rights Protection </a>
 </div>
 
 <div class="actions">
-<a class="button" target="_blank" onclick="gtag('event', 'click', {event_category: 'Complaint Button',event_label: 'CPG'})" href="https://pgportal.gov.in/Registration">Complaint on Centralized Public Grievance Redress & Monitoring System</a>
+<a class="button" target="_blank" onclick="trackEvent('cpgr_click', 'cpgr_button')" href="https://pgportal.gov.in/Registration">Complaint on Centralized Public Grievance Redress & Monitoring System</a>
 </div>
 
 <hr style="margin:25px 0;">
@@ -389,7 +389,7 @@ alert("Complaint letter copied. You can now paste it in the complaint portal.");
     <p>Every voice matters. Every signature counts. Stand up for students’ health—sign and share this petition today.</p>
   
   <div class="actions">
-    <a class="button" target="_blank" href="https://c.org/tCNtYBnkLN">Sign the Petition</a>
+    <a class="button" target="_blank" onclick="trackEvent('petition_click', 'petition_button')" href="https://c.org/tCNtYBnkLN">Sign the Petition</a>
   </div>
 </div>
   
@@ -401,7 +401,7 @@ alert("Complaint letter copied. You can now paste it in the complaint portal.");
     Please click the link below to send your complaint. All relevant email addresses have already been included. This will ensure that your complaint reaches all concerned authorities.
   </p>
 
-<a href="mailto:dmgha@nic.in, cmoffice@up.gov.in, cp.ncpcr@nic.in, cr.nhrc@nic.in, upscpcr@gmail.com, info.cbse@gov.in, diosgbd@gmail.com
+<a onclick="trackEvent('sendemail_click', 'sendemail_button')" href="mailto:dmgha@nic.in, cmoffice@up.gov.in, cp.ncpcr@nic.in, cr.nhrc@nic.in, upscpcr@gmail.com, info.cbse@gov.in, diosgbd@gmail.com
 ?subject=Urgent%20Complaint%20Regarding%20Excessive%20School%20Timings%20at%20Delhi%20Public%20School%2C%20Ghaziabad%20%28Meerut%20Road%29
 &body=Respected%20Sir%2FMadam%2C%0D%0A%0D%0AI%20am%20writing%20this%20complaint%20as%20a%20concerned%20parent%20of%20a%20student%20studying%20at%20Delhi%20Public%20School%2C%20Ghaziabad%20%28Meerut%20Road%29.%20This%20issue%20is%20affecting%20students%20from%20Class%201%20to%20Class%2012%20and%20requires%20urgent%20attention.%0D%0A%0D%0AThe%20school%20has%20significantly%20increased%20school%20hours.%20When%20combined%20with%20transportation%20time%2C%20many%20students%20are%20engaged%20in%20school-related%20activities%20for%20nearly%209%E2%80%9310%20hours%20daily.%0D%0A%0D%0AStudents%20leave%20early%20in%20the%20morning%20and%20return%20late%20in%20the%20evening%2C%20leaving%20very%20little%20time%20for%20rest%2C%20homework%2C%20play%2C%20or%20family%20interaction.%20This%20schedule%20causes%20fatigue%20and%20negatively%20impacts%20the%20health%20and%20well-being%20of%20students.%0D%0A%0D%0AThe%20change%20in%20school%20timings%20was%20communicated%20with%20very%20short%20notice%20and%20without%20proper%20consultation%20with%20parents.%0D%0A%0D%0ARequest%20for%20Immediate%20Intervention%0D%0A%0D%0AI%20respectfully%20request%20the%20authorities%20to%20investigate%20the%20excessive%20school%20timings%20and%20direct%20the%20school%20administration%20to%20restore%20reasonable%20school%20hours%20in%20the%20interest%20of%20student%20health%20and%20well-being.%0D%0A%0D%0AYours%20sincerely%2C%0D%0AConcerned%20Parent">
 Click here to send the complaint email
@@ -418,73 +418,73 @@ Click here to send the complaint email
 <li>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Raising%20urgent%20concerns%20about%20extended%20school%20hours%20at%20DPS%20Ghaziabad%20(Meerut%20Road).%20Students’%20health%20must%20come%20first.%20Immediate%20action%20needed.%20%23dpsgwakeup%20%23StudentHealth%20%40DPSG_PRNCPLMR%20%40myogiadityanath%20%40dm_ghaziabad%20%40ABPNews"
+  <a onclick="trackEvent('t1_click', 't1_button')" href="https://twitter.com/intent/tweet?text=Raising%20urgent%20concerns%20about%20extended%20school%20hours%20at%20DPS%20Ghaziabad%20(Meerut%20Road).%20Students’%20health%20must%20come%20first.%20Immediate%20action%20needed.%20%23dpsgwakeup%20%23StudentHealth%20%40DPSG_PRNCPLMR%20%40myogiadityanath%20%40dm_ghaziabad%20%40ABPNews"
 target="_blank"
 style="display:inline-block; margin:5px; padding:10px 15px; background:#1DA1F2; color:white; text-decoration:none; border-radius:5px;">
 Share Concern Tweet
 </a>
 
-  <a href="https://twitter.com/intent/tweet?text=Excessive%20school%20timings%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20are%20impacting%20students'%20health,%20sleep,%20and%20well-being.%20Authorities%20must%20intervene.%20%23dpsgwakeup%20%23ChildRights%20%40DPSG_PRNCPLMR%20%40myogiadityanath%20%40dm_ghaziabad"
+  <a onclick="trackEvent('t2_click', 't2_button')" href="https://twitter.com/intent/tweet?text=Excessive%20school%20timings%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20are%20impacting%20students'%20health,%20sleep,%20and%20well-being.%20Authorities%20must%20intervene.%20%23dpsgwakeup%20%23ChildRights%20%40DPSG_PRNCPLMR%20%40myogiadityanath%20%40dm_ghaziabad"
 target="_blank"
 style="display:inline-block; margin:5px; padding:10px 15px; background:#1DA1F2; color:white; text-decoration:none; border-radius:5px;">
 Share Health Impact Tweet
 </a>
   
-  <a href="https://twitter.com/intent/tweet?text=As%20concerned%20parents,%20we%20urge%20review%20of%20long%20school%20hours%20at%20DPS%20Ghaziabad%20(Meerut%20Road).%20Children%20need%20balance,%20rest,%20and%20well-being.%20%23dpsgwakeup%20%40dm_ghaziabad%20%40myogiadityanath"
+  <a onclick="trackEvent('t3_click', 't3_button')" href="https://twitter.com/intent/tweet?text=As%20concerned%20parents,%20we%20urge%20review%20of%20long%20school%20hours%20at%20DPS%20Ghaziabad%20(Meerut%20Road).%20Children%20need%20balance,%20rest,%20and%20well-being.%20%23dpsgwakeup%20%40dm_ghaziabad%20%40myogiadityanath"
 target="_blank"
 style="display:inline-block; margin:5px; padding:10px 15px; background:#1DA1F2; color:white; text-decoration:none; border-radius:5px;">
 Share Parent Voice Tweet
 </a>
 
-  <a href="https://twitter.com/intent/tweet?text=Why%20are%20students%20facing%20excessive%20school%20hours%20at%20DPS%20Ghaziabad%20(Meerut%20Road)?%20This%20impacts%20health%20and%20learning.%20Immediate%20accountability%20needed.%20%23dpsgwakeup%20%40DPSG_PRNCPLMR%20%40dm_ghaziabad"
+  <a onclick="trackEvent('t4_click', 't4_button')" href="https://twitter.com/intent/tweet?text=Why%20are%20students%20facing%20excessive%20school%20hours%20at%20DPS%20Ghaziabad%20(Meerut%20Road)?%20This%20impacts%20health%20and%20learning.%20Immediate%20accountability%20needed.%20%23dpsgwakeup%20%40DPSG_PRNCPLMR%20%40dm_ghaziabad"
 target="_blank"
 style="display:inline-block; margin:5px; padding:10px 15px; background:#1DA1F2; color:white; text-decoration:none; border-radius:5px;">
 Share Accountability Tweet
 </a>
 
-  <a href="https://twitter.com/intent/tweet?text=Students%20are%20not%20machines.%20Reduce%20long%20hours%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20now.%20%23dpsgwakeup%20%40dm_ghaziabad%20%40myogiadityanath"
+  <a onclick="trackEvent('t5_click', 't5_button')" href="https://twitter.com/intent/tweet?text=Students%20are%20not%20machines.%20Reduce%20long%20hours%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20now.%20%23dpsgwakeup%20%40dm_ghaziabad%20%40myogiadityanath"
 target="_blank"
 style="display:inline-block; margin:5px; padding:10px 15px; background:#1DA1F2; color:white; text-decoration:none; border-radius:5px;">
 Share Short Tweet
 </a>
 
- <a href="https://twitter.com/intent/tweet?text=Long%20school%20hours%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20are%20causing%20stress%20and%20fatigue%20among%20students.%20A%20healthy%20balance%20is%20essential.%20%23dpsgwakeup%20%23StudentWellbeing%20%40dm_ghaziabad%20%40myogiadityanath"
+ <a onclick="trackEvent('t6_click', 't6_button')" href="https://twitter.com/intent/tweet?text=Long%20school%20hours%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20are%20causing%20stress%20and%20fatigue%20among%20students.%20A%20healthy%20balance%20is%20essential.%20%23dpsgwakeup%20%23StudentWellbeing%20%40dm_ghaziabad%20%40myogiadityanath"
 target="_blank"
 style="display:inline-block; margin:5px; padding:10px 15px; background:#1DA1F2; color:white; text-decoration:none; border-radius:5px;">
 Share Stress Concern Tweet
 </a>
 
-  <a href="https://twitter.com/intent/tweet?text=Students%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20deserve%20reasonable%20school%20hours.%20Overburdening%20them%20affects%20both%20health%20and%20learning.%20%23dpsgwakeup%20%23EducationReform%20%40DPSG_PRNCPLMR%20%40ABPNews"
+  <a onclick="trackEvent('t7_click', 't7_button')" href="https://twitter.com/intent/tweet?text=Students%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20deserve%20reasonable%20school%20hours.%20Overburdening%20them%20affects%20both%20health%20and%20learning.%20%23dpsgwakeup%20%23EducationReform%20%40DPSG_PRNCPLMR%20%40ABPNews"
 target="_blank"
 style="display:inline-block; margin:5px; padding:10px 15px; background:#1DA1F2; color:white; text-decoration:none; border-radius:5px;">
 Share Education Reform Tweet
 </a>
 
-  <a href="https://twitter.com/intent/tweet?text=Children%20need%20time%20to%20rest,%20play,%20and%20grow.%20Excessive%20hours%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20are%20unfair.%20Immediate%20review%20needed.%20%23dpsgwakeup%20%23RightToChildhood%20%40dm_ghaziabad"
+  <a onclick="trackEvent('t8_click', 't8_button')" href="https://twitter.com/intent/tweet?text=Children%20need%20time%20to%20rest,%20play,%20and%20grow.%20Excessive%20hours%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20are%20unfair.%20Immediate%20review%20needed.%20%23dpsgwakeup%20%23RightToChildhood%20%40dm_ghaziabad"
 target="_blank"
 style="display:inline-block; margin:5px; padding:10px 15px; background:#1DA1F2; color:white; text-decoration:none; border-radius:5px;">
 Share Childhood Rights Tweet
 </a>
 
-  <a href="https://twitter.com/intent/tweet?text=Overloaded%20school%20schedules%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20are%20impacting%20students'%20mental%20health.%20Authorities%20must%20step%20in.%20%23dpsgwakeup%20%23MentalHealthMatters%20%40myogiadityanath%20%40ABPNews"
+  <a onclick="trackEvent('t9_click', 't9_button')" href="https://twitter.com/intent/tweet?text=Overloaded%20school%20schedules%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20are%20impacting%20students'%20mental%20health.%20Authorities%20must%20step%20in.%20%23dpsgwakeup%20%23MentalHealthMatters%20%40myogiadityanath%20%40ABPNews"
 target="_blank"
 style="display:inline-block; margin:5px; padding:10px 15px; background:#1DA1F2; color:white; text-decoration:none; border-radius:5px;">
 Share Mental Health Tweet
 </a>
 
-  <a href="https://twitter.com/intent/tweet?text=Academic%20pressure%20plus%20long%20hours%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20is%20too%20much%20for%20students.%20Balance%20is%20key.%20%23dpsgwakeup%20%23StudentLife%20%40DPSG_PRNCPLMR%20%40dm_ghaziabad"
+  <a onclick="trackEvent('t10_click', 't10_button')" href="https://twitter.com/intent/tweet?text=Academic%20pressure%20plus%20long%20hours%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20is%20too%20much%20for%20students.%20Balance%20is%20key.%20%23dpsgwakeup%20%23StudentLife%20%40DPSG_PRNCPLMR%20%40dm_ghaziabad"
 target="_blank"
 style="display:inline-block; margin:5px; padding:10px 15px; background:#1DA1F2; color:white; text-decoration:none; border-radius:5px;">
 Share Student Life Tweet
 </a>
 
-  <a href="https://twitter.com/intent/tweet?text=We%20request%20officials%20to%20review%20school%20timings%20at%20DPS%20Ghaziabad%20(Meerut%20Road).%20Students’%20health%20should%20never%20be%20compromised.%20%23dpsgwakeup%20%40dm_ghaziabad%20%40myogiadityanath"
+  <a onclick="trackEvent('t11_click', 't11_button')" href="https://twitter.com/intent/tweet?text=We%20request%20officials%20to%20review%20school%20timings%20at%20DPS%20Ghaziabad%20(Meerut%20Road).%20Students’%20health%20should%20never%20be%20compromised.%20%23dpsgwakeup%20%40dm_ghaziabad%20%40myogiadityanath"
 target="_blank"
 style="display:inline-block; margin:5px; padding:10px 15px; background:#1DA1F2; color:white; text-decoration:none; border-radius:5px;">
 Share Official Request Tweet
 </a>
 
-  <a href="https://twitter.com/intent/tweet?text=Too%20many%20hours%20in%20school%20can%20lead%20to%20burnout.%20Students%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20need%20relief.%20%23dpsgwakeup%20%23StopStudentBurnout%20%40ABPNews"
+  <a onclick="trackEvent('t12_click', 't12_button')" href="https://twitter.com/intent/tweet?text=Too%20many%20hours%20in%20school%20can%20lead%20to%20burnout.%20Students%20at%20DPS%20Ghaziabad%20(Meerut%20Road)%20need%20relief.%20%23dpsgwakeup%20%23StopStudentBurnout%20%40ABPNews"
 target="_blank"
 style="display:inline-block; margin:5px; padding:10px 15px; background:#1DA1F2; color:white; text-decoration:none; border-radius:5px;">
 Share Burnout Tweet
